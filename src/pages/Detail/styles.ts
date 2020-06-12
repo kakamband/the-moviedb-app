@@ -29,14 +29,15 @@ export const ContentText = styled.div`
     color: #524b4b;
     padding: 10px 0 10px;
   }
-
-  p {
-    margin-bottom: 20px;
-  }
 `;
 
 export const About = styled.p`
   font-size: 20px;
+  margin-top: 20px;
+`;
+
+export const MoreInfo = styled.div`
+  padding: 20px 0;
 `;
 
 export const ContentButton = styled.div`
