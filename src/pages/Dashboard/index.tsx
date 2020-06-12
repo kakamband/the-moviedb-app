@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import PopularMovies from '../../components/PopularMovies';
 import PopularSeries from '../../components/PopularSeries';
 import Family from '../../components/Family';
+import Documentary from '../../components/Documentary';
 
 const Dashboard: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const Dashboard: React.FC = () => {
       <PopularMovies />
       <PopularSeries />
       <Family />
+      <Documentary />
     </>
   );
 };
