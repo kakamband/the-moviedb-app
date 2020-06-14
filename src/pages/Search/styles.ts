@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   height: 100%;
@@ -16,7 +16,7 @@ export const Content = styled.div`
   }
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   margin-top: 40px;
   max-width: 700px;
   display: flex;
@@ -31,6 +31,8 @@ export const Form = styled.div`
     border-top-left-radius: 50px;
     background: #e5e5e5;
     border-right: 0;
+    color: #524b4b;
+    font-size: 20px;
 
     &::placeholder {
       color: #524b4b;
@@ -40,7 +42,17 @@ export const Form = styled.div`
   }
 
   button {
-    padding: 0 30px;
-    margin-left: -20px;
+    padding: 0 40px;
+    margin-left: -50px;
   }
+`;
+
+export const Error = styled.span`
+  /* display: block; */
+  color: #c53030;
+  margin-top: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
