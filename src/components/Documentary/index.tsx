@@ -30,7 +30,7 @@ const Documentary: React.FC = () => {
           <ul>
             {documentarys.map((documentary) => (
               <li key={documentary.id}>
-                <Link to={`/Detail/${documentary.title}`}>
+                <Link to={`/Detail/documentary/${documentary.id}`}>
                   {documentary.poster_path !== null ? (
                     <img
                       src={`${API_BASE_IMAGE_URL}w342${documentary.poster_path}`}
