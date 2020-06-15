@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import notfound from '../../assets/notfound.svg';
+
 import { Section } from '../../styles/shared';
 
-import api, { API_BASE_IMAGE_URL } from '../../services/api';
+import { API_BASE_IMAGE_URL } from '../../services/api';
+
+import client from '../../services/client';
 
 interface Item {
   poster_path: string | undefined;
@@ -15,7 +19,7 @@ const PopularMovies: React.FC = () => {
   const [movies, setMovies] = useState<Item[]>([]);
 
   useEffect(() => {
-    api.get(`movie/popular`).then((response) => {
+    client.get(`movie/popular`).then((response) => {
       setMovies(response.data.results);
     });
   }, []);
@@ -35,7 +39,7 @@ const PopularMovies: React.FC = () => {
                       alt="{movie.title}"
                     />
                   ) : (
-                    <h1>colocar imagem error</h1>
+                    <img src={notfound} alt="notfound" />
                   )}
                 </Link>
               </li>

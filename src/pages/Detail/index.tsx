@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api, { API_BASE_IMAGE_URL } from '../../services/api';
 import { useRouteMatch } from 'react-router-dom';
 import Header from '../../components/Header';
+
 import {
   Container,
   Box,
@@ -12,10 +13,12 @@ import {
   ContentImg,
   MoreInfo,
 } from './styles';
+import Player from '../../components/Player';
 
 interface ItensParams {
   movie: string;
   serie: string;
+  documentary: string;
 }
 
 interface Itens {
@@ -34,6 +37,7 @@ interface Itens {
 const Detail: React.FC = () => {
   const [movie, setMovie] = useState<Itens>();
   const [serie, setSerie] = useState<Itens>();
+  const [showVideo, setShowVideo] = useState<Boolean>(false);
 
   const { params } = useRouteMatch<ItensParams>();
 
@@ -49,11 +53,17 @@ const Detail: React.FC = () => {
     });
   }, [params.serie]);
 
+  function handlePlay() {
+    setShowVideo(true);
+  }
+
   return (
     <Container>
       <Header />
 
-      {movie && (
+      {showVideo && <Player />}
+
+      {movie && !showVideo && (
         <Box>
           <Content>
             <ContentText>
@@ -67,9 +77,10 @@ const Detail: React.FC = () => {
               </MoreInfo>
             </ContentText>
             <ContentButton>
-              <button>Whatch Now</button>
+              <button onClick={handlePlay}>Whatch Now</button>
             </ContentButton>
           </Content>
+
           <ContentImg>
             <img
               src={`${API_BASE_IMAGE_URL}w342${movie.poster_path}`}
@@ -79,7 +90,7 @@ const Detail: React.FC = () => {
         </Box>
       )}
 
-      {serie && (
+      {serie && !showVideo && (
         <Box>
           <Content>
             <ContentText>
@@ -93,7 +104,7 @@ const Detail: React.FC = () => {
               </MoreInfo>
             </ContentText>
             <ContentButton>
-              <button>Whatch Now</button>
+              <button onClick={handlePlay}>Whatch Now</button>
             </ContentButton>
           </Content>
           <ContentImg>

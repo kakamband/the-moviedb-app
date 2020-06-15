@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import notfound from '../../assets/notfound.svg';
+
 import { Section } from '../../styles/shared';
 
-import api, { API_BASE_IMAGE_URL } from '../../services/api';
+import { API_BASE_IMAGE_URL } from '../../services/api';
+
+import client from '../../services/client';
 
 interface IFamilyGenre {
   poster_path: string | null;
@@ -20,11 +24,11 @@ const Family: React.FC = () => {
   const [genretv, setGenreTv] = useState<IFamilyGenre[]>([]);
 
   useEffect(() => {
-    api.get(`/discover/movie?with_genres=10751`).then((response) => {
+    client.get(`/discover/movie?with_genres=10751`).then((response) => {
       setGenreMovie(response.data.results);
     });
 
-    api.get(`discover/tv?with_genres=10751`).then((response) => {
+    client.get(`discover/tv?with_genres=10751`).then((response) => {
       setGenreTv(response.data.results);
     });
   }, []);
@@ -46,7 +50,7 @@ const Family: React.FC = () => {
                       alt="{genre.title}"
                     />
                   ) : (
-                    <h1>colocar imagem error</h1>
+                    <img src={notfound} alt="notfound" />
                   )}
                 </Link>
               </li>

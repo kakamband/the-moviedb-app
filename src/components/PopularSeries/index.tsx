@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import api, { API_BASE_IMAGE_URL } from '../../services/api';
+import { API_BASE_IMAGE_URL } from '../../services/api';
+import client from '../../services/client';
+
 import { Link } from 'react-router-dom';
+
+import notfound from '../../assets/notfound.svg';
 
 import { Section } from '../../styles/shared';
 
@@ -15,7 +19,7 @@ const PopularSeries: React.FC = () => {
   const [series, setSeries] = useState<Serie[]>([]);
 
   useEffect(() => {
-    api.get(`tv/popular`).then((response) => {
+    client.get(`tv/popular`).then((response) => {
       setSeries(response.data.results);
     });
   }, []);
@@ -35,7 +39,7 @@ const PopularSeries: React.FC = () => {
                       alt="{serie.title}"
                     />
                   ) : (
-                    <h1>colocar imagem error</h1>
+                    <img src={notfound} alt="notfound" />
                   )}
                 </Link>
               </li>

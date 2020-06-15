@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import notfound from '../../assets/notfound.svg';
+
 import { Section } from '../../styles/shared';
 
 import api, { API_BASE_IMAGE_URL } from '../../services/api';
@@ -37,7 +39,7 @@ const Documentary: React.FC = () => {
                       alt="{Documentary.title}"
                     />
                   ) : (
-                    <h1>colocar imagem error</h1>
+                    <img src={notfound} alt="notfound" />
                   )}
                 </Link>
               </li>

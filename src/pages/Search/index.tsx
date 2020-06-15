@@ -2,7 +2,10 @@ import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Section } from '../../styles/shared';
 
-import api, { API_BASE_IMAGE_URL } from '../../services/api';
+import notfound from '../../assets/notfound.svg';
+
+import { API_BASE_IMAGE_URL } from '../../services/api';
+import client from '../../services/client';
 
 import { Container, Content, Form, Error } from './styles';
 import Header from '../../components/Header';
@@ -40,7 +43,7 @@ const Search: React.FC = () => {
     }
 
     try {
-      const response = await api.get(`search/multi?query=${query}`);
+      const response = await client.get(`search/multi?query=${query}`);
 
       setResult(response.data.results);
       console.log(response.data.results);
@@ -84,7 +87,7 @@ const Search: React.FC = () => {
                         alt="{item.title}"
                       />
                     ) : (
-                      <h1>ops</h1>
+                      <img src={notfound} alt="notfound" />
                     )}
                   </Link>
                 </li>
