@@ -14,7 +14,7 @@ const Header: React.FC = (props) => {
             <FiHome />
           </Link>
 
-          <Link to="/Search">
+          <Link to="/search">
             <FiSearch />
           </Link>
         </nav>
