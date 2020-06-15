@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import api, { API_BASE_IMAGE_URL } from '../../services/api';
+import React, { useState, useEffect } from 'react';
+import { API_BASE_IMAGE_URL, getDetail } from '../../services/api';
+
 import { useRouteMatch } from 'react-router-dom';
 import Header from '../../components/Header';
 
@@ -15,43 +16,44 @@ import {
 } from './styles';
 import Player from '../../components/Player';
 
-interface ItensParams {
-  movie: string;
-  serie: string;
-  documentary: string;
+interface ItemParams {
+  type: string;
+  id: string;
 }
 
-interface Itens {
-  poster_path: string | undefined;
-  overview: string | undefined;
-  original_language: string;
+interface Item {
+  poster_path: string | null;
+  overview: string;
+  realese_date: string;
   original_title: string;
-  original_name: string;
-  release_date: string;
-  first_air_date: string;
-  name: string;
+  original_language: string;
   title: string;
+  popularity: number;
+  vote_count: number;
+  vote_avanger: number;
+  first_air_date: string;
+  release_date: string;
+  origin_country: string;
+  name: string;
+  original_name: string;
   id: number;
 }
 
 const Detail: React.FC = () => {
-  const [movie, setMovie] = useState<Itens>();
-  const [serie, setSerie] = useState<Itens>();
+  const [movie, setMovie] = useState<Item>();
+  const [serie, setSerie] = useState<Item>();
   const [showVideo, setShowVideo] = useState<Boolean>(false);
 
-  const { params } = useRouteMatch<ItensParams>();
+  const { params } = useRouteMatch<ItemParams>();
 
   useEffect(() => {
-    api.get(`movie/${params.movie}`).then((response) => {
-      setMovie(response.data);
-    });
-  }, [params.movie]);
-
-  useEffect(() => {
-    api.get(`tv/${params.serie}`).then((response) => {
-      setSerie(response.data);
-    });
-  }, [params.serie]);
+    async function loadDetail() {
+      const detail = await getDetail(params.type, params.id);
+      if (params.type === 'movie') setMovie(detail);
+      if (params.type === 'tv') setSerie(detail);
+    }
+    loadDetail();
+  }, [params]);
 
   function handlePlay() {
     setShowVideo(true);

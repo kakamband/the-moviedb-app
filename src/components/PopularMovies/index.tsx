@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
-import notfound from '../../assets/notfound.svg';
+import { getPopularMovies } from '../../services/api';
 
 import { Section } from '../../styles/shared';
-
-import { API_BASE_IMAGE_URL } from '../../services/api';
-
-import client from '../../services/client';
-
-interface Item {
-  poster_path: string | undefined;
-  title: string;
-  id: number;
-}
+import Media, { Item } from '../Media';
 
 const PopularMovies: React.FC = () => {
   const [movies, setMovies] = useState<Item[]>([]);
 
   useEffect(() => {
-    client.get(`movie/popular`).then((response) => {
-      setMovies(response.data.results);
-    });
+    async function loadPopularMovies() {
+      const popularMovies = await getPopularMovies();
+      setMovies(popularMovies);
+    }
+    loadPopularMovies();
   }, []);
 
   return (
@@ -30,18 +22,9 @@ const PopularMovies: React.FC = () => {
         <Section>
           <h1>Popular Movies</h1>
           <ul>
-            {movies.map((movie) => (
-              <li key={movie.id}>
-                <Link to={`/detail/movie/${movie.id}`}>
-                  {movie.poster_path !== null ? (
-                    <img
-                      src={`${API_BASE_IMAGE_URL}w342${movie.poster_path}`}
-                      alt="{movie.title}"
-                    />
-                  ) : (
-                    <img src={notfound} alt="notfound" />
-                  )}
-                </Link>
+            {movies.map((item) => (
+              <li key={item.id}>
+                <Media item={item} type="movie" />
               </li>
             ))}
           </ul>

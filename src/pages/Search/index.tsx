@@ -1,16 +1,13 @@
 import React, { useState, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
 import { Section } from '../../styles/shared';
 
-import notfound from '../../assets/notfound.svg';
-
-import { API_BASE_IMAGE_URL } from '../../services/api';
-import client from '../../services/client';
+import { getResults } from '../../services/api';
 
 import { Container, Content, Form, Error } from './styles';
 import Header from '../../components/Header';
+import Media from '../../components/Media';
 
-interface IResult {
+export interface IResult {
   poster_path: string | null;
   overview: string;
   realese_date: string;
@@ -24,6 +21,7 @@ interface IResult {
   origin_country: string;
   name: string;
   original_name: string;
+  media_type: string;
   id: number;
 }
 
@@ -31,6 +29,7 @@ const Search: React.FC = () => {
   const [query, setQuery] = useState('');
   const [inputError, setInputError] = useState('');
   const [result, setResult] = useState<IResult[]>([]);
+  const [lastQuery, setLastQuery] = useState('');
 
   async function handleSearch(
     event: FormEvent<HTMLFormElement>,
@@ -43,14 +42,18 @@ const Search: React.FC = () => {
     }
 
     try {
-      const response = await client.get(`search/multi?query=${query}`);
+      const searchResult = await getResults(query);
+      setResult(searchResult);
 
-      setResult(response.data.results);
-      console.log(response.data.results);
+      setLastQuery(query);
       setQuery('');
       setInputError('');
+
+      if (searchResult.length === 0) {
+        setInputError(`No results found for ${query}`);
+      }
     } catch (err) {
-      setInputError('Sorry, nothing found.');
+      setInputError('Ops, something bad happend.');
     }
   }
 
@@ -76,20 +79,11 @@ const Search: React.FC = () => {
 
         {result.length > 0 && (
           <Section>
-            <h1>Results</h1>
+            <h1>Results for: {lastQuery}</h1>
             <ul>
               {result.map((item) => (
                 <li key={item.id}>
-                  <Link to={`/Detail/search/${query}`}>
-                    {item.poster_path !== null ? (
-                      <img
-                        src={`${API_BASE_IMAGE_URL}w342${item.poster_path}`}
-                        alt="{item.title}"
-                      />
-                    ) : (
-                      <img src={notfound} alt="notfound" />
-                    )}
-                  </Link>
+                  <Media item={item} type={item.media_type} />
                 </li>
               ))}
             </ul>

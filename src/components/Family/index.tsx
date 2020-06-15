@@ -1,58 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import notfound from '../../assets/notfound.svg';
+import { getFamilyMovies, getFamilySeries } from '../../services/api';
 
 import { Section } from '../../styles/shared';
+import Media from '../Media';
 
-import { API_BASE_IMAGE_URL } from '../../services/api';
-
-import client from '../../services/client';
-
-interface IFamilyGenre {
+interface Item {
   poster_path: string | null;
-  overview: string;
   title: string;
-  release_date: string;
-  id: number;
   name: string;
-  first_air_date: string;
+  id: number;
+  type: string;
 }
 
 const Family: React.FC = () => {
-  const [genremovie, setGenreMovie] = useState<IFamilyGenre[]>([]);
-  const [genretv, setGenreTv] = useState<IFamilyGenre[]>([]);
+  const [familyMovies, setFamilyMovies] = useState<Item[]>([]);
+  const [familySeries, setFamilySeries] = useState<Item[]>([]);
 
   useEffect(() => {
-    client.get(`/discover/movie?with_genres=10751`).then((response) => {
-      setGenreMovie(response.data.results);
-    });
+    async function loadFamilyMovies() {
+      const familyMovies = await getFamilyMovies();
 
-    client.get(`discover/tv?with_genres=10751`).then((response) => {
-      setGenreTv(response.data.results);
-    });
+      setFamilyMovies(
+        familyMovies.map((item: Item) => ({
+          ...item,
+          type: 'movie',
+        })),
+      );
+    }
+    loadFamilyMovies();
+
+    async function loadFamilySeries() {
+      const familySeries = await getFamilySeries();
+      setFamilySeries(
+        familySeries.map((item: Item) => ({
+          ...item,
+          type: 'tv',
+        })),
+      );
+    }
+    loadFamilySeries();
   }, []);
 
-  const familyGenre = genremovie.concat(genretv);
+  const family = familySeries
+    .concat(familyMovies)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 20);
 
   return (
     <>
-      {familyGenre && (
+      {family && (
         <Section>
           <h1>Family</h1>
           <ul>
-            {familyGenre.map((genre) => (
-              <li key={genre.id}>
-                <Link to="/Detail">
-                  {genre.poster_path !== null ? (
-                    <img
-                      src={`${API_BASE_IMAGE_URL}w342${genre.poster_path}`}
-                      alt="{genre.title}"
-                    />
-                  ) : (
-                    <img src={notfound} alt="notfound" />
-                  )}
-                </Link>
+            {family.map((item) => (
+              <li key={item.id}>
+                <Media item={item} type={item.type} />
               </li>
             ))}
           </ul>

@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { API_BASE_IMAGE_URL } from '../../services/api';
-import client from '../../services/client';
-
-import { Link } from 'react-router-dom';
-
-import notfound from '../../assets/notfound.svg';
+import { getPopularSeries } from '../../services/api';
 
 import { Section } from '../../styles/shared';
-
-interface Serie {
-  poster_path: string | undefined;
-  name: string;
-  release_date: string;
-  id: number;
-}
+import Media, { Item } from '../Media';
 
 const PopularSeries: React.FC = () => {
-  const [series, setSeries] = useState<Serie[]>([]);
+  const [series, setSeries] = useState<Item[]>([]);
 
   useEffect(() => {
-    client.get(`tv/popular`).then((response) => {
-      setSeries(response.data.results);
-    });
+    async function loadPopularSeries() {
+      const popularSeries = await getPopularSeries();
+      setSeries(popularSeries);
+    }
+    loadPopularSeries();
   }, []);
 
   return (
@@ -30,18 +21,9 @@ const PopularSeries: React.FC = () => {
         <Section>
           <h1>Popular series</h1>
           <ul>
-            {series.map((serie) => (
-              <li key={serie.id}>
-                <Link to={`/detail/serie/${serie.id}`}>
-                  {serie.poster_path !== null ? (
-                    <img
-                      src={`${API_BASE_IMAGE_URL}w342${serie.poster_path}`}
-                      alt="{serie.title}"
-                    />
-                  ) : (
-                    <img src={notfound} alt="notfound" />
-                  )}
-                </Link>
+            {series.map((item) => (
+              <li key={item.id}>
+                <Media item={item} type="tv" />
               </li>
             ))}
           </ul>
