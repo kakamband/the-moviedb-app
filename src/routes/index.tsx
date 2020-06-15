@@ -8,10 +8,8 @@ import Search from '../pages/Search';
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={Dashboard} />
-    <Route path="/detail/movie/:movie+" component={Detail} />
-    <Route path="/detail/serie/:serie+" component={Detail} />
-    <Route path="/detail/documentary/:documentary+" component={Detail} />
-    <Route path="/search" component={Search} />
+    <Route path="/detail/:type/:id+" component={Detail} />
+    <Route path="/search/" component={Search} />
   </Switch>
 );
 
