@@ -32,10 +32,15 @@ interface Item {
   vote_count: number;
   vote_avanger: number;
   first_air_date: string;
+  last_episode_to_air: string;
+  next_episode_to_air: string;
   release_date: string;
   origin_country: string;
   name: string;
   original_name: string;
+  number_of_episodes: number;
+  number_of_seasons: number;
+  status: string;
   id: number;
 }
 
@@ -51,7 +56,9 @@ const Detail: React.FC = () => {
       const detail = await getDetail(params.type, params.id);
       if (params.type === 'movie') setMovie(detail);
       if (params.type === 'tv') setSerie(detail);
+      console.log(detail.release_date);
     }
+
     loadDetail();
   }, [params]);
 
@@ -70,12 +77,17 @@ const Detail: React.FC = () => {
           <Content>
             <ContentText>
               <h1>{movie.title}</h1>
-              <h3> {movie.release_date}</h3>
+              <h3> ({movie.release_date.slice(0, 4)})</h3>
               <About>{movie.overview}</About>
               <MoreInfo>
                 <h3>More informations</h3>
-                <p>Original language: {movie.original_language}</p>
-                <p>Original title: {movie.original_title}</p>
+
+                <ul>
+                  <li>Original title: {movie.original_title}</li>
+                  <li>Original language: {movie.original_language}</li>
+                  <li>Popularity: {movie.popularity}</li>
+                  <li>Vote count: {movie.vote_count}</li>
+                </ul>
               </MoreInfo>
             </ContentText>
             <ContentButton>
@@ -97,12 +109,23 @@ const Detail: React.FC = () => {
           <Content>
             <ContentText>
               <h1>{serie.name}</h1>
-              <h3> Realiase data {serie.first_air_date}</h3>
+              <h3> ({serie.first_air_date.slice(0, 4)})</h3>
               <About>{serie.overview}</About>
               <MoreInfo>
                 <h3>More informations</h3>
-                <p>Original language: {serie.original_language}</p>
-                <p>Original title: {serie.original_name}</p>
+                <ul>
+                  <li>Original title: {serie.original_name}</li>
+                  <li>Original language: {serie.original_language}</li>
+                  <li>Origin country: {serie.origin_country}</li>
+
+                  <li>Popularity: {serie.popularity}</li>
+                  <li>Vote count: {serie.vote_count}</li>
+                  <li>First air date: {serie.first_air_date}</li>
+
+                  <li>Number of episodes:{serie.number_of_episodes}</li>
+                  <li>Number of seasons:{serie.number_of_seasons}</li>
+                  <li>status:{serie.status}</li>
+                </ul>
               </MoreInfo>
             </ContentText>
             <ContentButton>
