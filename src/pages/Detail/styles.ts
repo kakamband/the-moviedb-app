@@ -20,24 +20,48 @@ export const Content = styled.div`
 `;
 
 export const ContentText = styled.div`
-  h1 {
-    font-size: 45px;
-  }
-
-  h3 {
+  & h3 {
     font-size: 20px;
-    color: #524b4b;
-    padding: 10px 0 10px;
+    color: #a09999;
+    padding-bottom: 10px;
+  }
+`;
+
+export const Title = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+
+  h1 {
+    font-size: 48px;
+    margin-right: 10px;
+
+    & span {
+      font-size: 20px;
+      color: #a09999;
+      align-self: flex-end;
+    }
   }
 `;
 
 export const About = styled.p`
-  font-size: 20px;
-  margin-top: 20px;
+  font-size: 24px;
+  padding: 45px 0;
 `;
 
 export const MoreInfo = styled.div`
-  padding: 20px 0;
+  li {
+    list-style: none;
+    color: #e9e9e9;
+
+    & strong {
+      margin-right: 2px;
+    }
+
+    + li {
+      margin-top: 2px;
+    }
+  }
 `;
 
 export const ContentButton = styled.div`
