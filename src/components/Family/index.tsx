@@ -2,15 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getFamilyMovies, getFamilySeries } from '../../services/api';
 
 import { Section } from '../../styles/shared';
-import Media from '../Media';
+import { Item } from '../Media';
 
-interface Item {
-  poster_path: string | null;
-  title: string;
-  name: string;
-  id: number;
-  type: string;
-}
+import MediaCarousel from '../MediaCarousel';
 
 const Family: React.FC = () => {
   const [familyMovies, setFamilyMovies] = useState<Item[]>([]);
@@ -23,7 +17,7 @@ const Family: React.FC = () => {
       setFamilyMovies(
         familyMovies.map((item: Item) => ({
           ...item,
-          type: 'movie',
+          media_type: 'movie',
         })),
       );
     }
@@ -34,7 +28,7 @@ const Family: React.FC = () => {
       setFamilySeries(
         familySeries.map((item: Item) => ({
           ...item,
-          type: 'tv',
+          media_type: 'tv',
         })),
       );
     }
@@ -51,13 +45,7 @@ const Family: React.FC = () => {
       {family && (
         <Section>
           <h1>Family</h1>
-          <ul>
-            {family.map((item) => (
-              <li key={item.id}>
-                <Media item={item} type={item.type} />
-              </li>
-            ))}
-          </ul>
+          <MediaCarousel items={family} />
         </Section>
       )}
     </>

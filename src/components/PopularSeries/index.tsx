@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { getPopularSeries } from '../../services/api';
 
 import { Section } from '../../styles/shared';
-import Media, { Item } from '../Media';
+import { Item } from '../Media';
+
+import MediaCarousel from '../MediaCarousel';
 
 const PopularSeries: React.FC = () => {
   const [series, setSeries] = useState<Item[]>([]);
@@ -10,7 +12,12 @@ const PopularSeries: React.FC = () => {
   useEffect(() => {
     async function loadPopularSeries() {
       const popularSeries = await getPopularSeries();
-      setSeries(popularSeries);
+      setSeries(
+        popularSeries.map((item: Item) => ({
+          ...item,
+          media_type: 'tv',
+        })),
+      );
     }
     loadPopularSeries();
   }, []);
@@ -20,13 +27,7 @@ const PopularSeries: React.FC = () => {
       {series && (
         <Section>
           <h1>Popular series</h1>
-          <ul>
-            {series.map((item) => (
-              <li key={item.id}>
-                <Media item={item} type="tv" />
-              </li>
-            ))}
-          </ul>
+          <MediaCarousel items={series} />
         </Section>
       )}
     </>

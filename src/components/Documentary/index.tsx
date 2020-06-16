@@ -3,13 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Section } from '../../styles/shared';
 
 import { getDocumentaries } from '../../services/api';
-import Media from '../Media';
 
-interface Item {
-  poster_path: string | null;
-  title: string;
-  id: number;
-}
+import MediaCarousel from '../MediaCarousel';
+
+import { Item } from '../Media';
 
 const Documentary: React.FC = () => {
   const [documentaries, setDocumentaries] = useState<Item[]>([]);
@@ -17,7 +14,12 @@ const Documentary: React.FC = () => {
   useEffect(() => {
     async function loadDocumentaries() {
       const documentaries = await getDocumentaries();
-      setDocumentaries(documentaries);
+      setDocumentaries(
+        documentaries.map((item: Item) => ({
+          ...item,
+          media_type: 'movies',
+        })),
+      );
     }
     loadDocumentaries();
   }, []);
@@ -27,13 +29,7 @@ const Documentary: React.FC = () => {
       {documentaries && (
         <Section>
           <h1>Documentary</h1>
-          <ul>
-            {documentaries.map((item) => (
-              <li key={item.id}>
-                <Media item={item} type="movie" />
-              </li>
-            ))}
-          </ul>
+          <MediaCarousel items={documentaries} />
         </Section>
       )}
     </>

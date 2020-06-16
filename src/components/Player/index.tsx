@@ -13,7 +13,7 @@ const Player: React.FC<IPlayer> = ({
   autoPlay = true,
   width = '100%',
   height = '100%',
-}: IPlayer) => {
+}) => {
   const uiRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 

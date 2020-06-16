@@ -39,8 +39,6 @@ interface Item {
   next_episode_to_air: string;
   release_date: string;
   name: string;
-  number_of_episodes: number;
-  number_of_seasons: number;
   status: string;
   id: number;
 }
@@ -123,18 +121,9 @@ const Detail: React.FC = () => {
                     ).toLocaleDateString('en-GB')}
                   </li>
                   <li>
-                    <strong>Number of episodes:</strong>
-                    {mediaItem.number_of_episodes || 'Nothing found'}
-                  </li>
-                  <li>
-                    <strong>Number of seasons:</strong>
-                    {mediaItem.number_of_seasons || 'Nothing found'}
-                  </li>
-                  <li>
                     <strong>Status:</strong>
                     {mediaItem.status || 'Nothing found'}
                   </li>
-                  }
                 </ul>
               </MoreInfo>
             </ContentText>
