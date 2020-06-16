@@ -2,22 +2,22 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   ul {
-    margin-top: 20px;
+    margin-top: 2rem;
 
     li {
-      width: 223px !important;
-      height: 329px !important;
+      width: auto !important;
+      height: 40rem !important;
       margin: 0 5px;
       transition: transform 0.2s;
 
       &:hover {
-        transform: translateY(-10px);
+        transform: translateY(-1rem);
       }
     }
 
     img {
-      height: 329px;
-      width: 223px;
+      height: 40rem;
+      width: auto;
     }
   }
 `;
