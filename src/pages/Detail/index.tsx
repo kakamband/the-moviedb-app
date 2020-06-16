@@ -3,6 +3,7 @@ import { API_BASE_IMAGE_URL, getDetail } from '../../services/api';
 
 import { useRouteMatch } from 'react-router-dom';
 import Header from '../../components/Header';
+import notfound from '../../assets/notfound.svg';
 
 import {
   Container,
@@ -13,6 +14,7 @@ import {
   ContentButton,
   ContentImg,
   MoreInfo,
+  Title,
 } from './styles';
 import Player from '../../components/Player';
 
@@ -24,9 +26,10 @@ interface ItemParams {
 interface Item {
   poster_path: string | null;
   overview: string;
-  realese_date: string;
   original_title: string;
   original_language: string;
+  original_name: string;
+  origin_country: string;
   title: string;
   popularity: number;
   vote_count: number;
@@ -35,9 +38,7 @@ interface Item {
   last_episode_to_air: string;
   next_episode_to_air: string;
   release_date: string;
-  origin_country: string;
   name: string;
-  original_name: string;
   number_of_episodes: number;
   number_of_seasons: number;
   status: string;
@@ -45,8 +46,7 @@ interface Item {
 }
 
 const Detail: React.FC = () => {
-  const [movie, setMovie] = useState<Item>();
-  const [serie, setSerie] = useState<Item>();
+  const [mediaItem, setMediaItem] = useState<Item>();
   const [showVideo, setShowVideo] = useState<Boolean>(false);
 
   const { params } = useRouteMatch<ItemParams>();
@@ -54,9 +54,7 @@ const Detail: React.FC = () => {
   useEffect(() => {
     async function loadDetail() {
       const detail = await getDetail(params.type, params.id);
-      if (params.type === 'movie') setMovie(detail);
-      if (params.type === 'tv') setSerie(detail);
-      console.log(detail.release_date);
+      setMediaItem(detail);
     }
 
     loadDetail();
@@ -66,27 +64,77 @@ const Detail: React.FC = () => {
     setShowVideo(true);
   }
 
+  function formatData(dataString: string) {
+    return new Date(dataString);
+  }
+
   return (
     <Container>
       <Header />
 
       {showVideo && <Player />}
 
-      {movie && !showVideo && (
+      {mediaItem && !showVideo && (
         <Box>
           <Content>
             <ContentText>
-              <h1>{movie.title}</h1>
-              <h3> ({movie.release_date.slice(0, 4)})</h3>
-              <About>{movie.overview}</About>
+              <Title>
+                <h1>
+                  {mediaItem.name || mediaItem.title}
+                  <span>
+                    (
+                    {formatData(
+                      mediaItem.first_air_date || mediaItem.release_date,
+                    ).getFullYear()}
+                    )
+                  </span>
+                </h1>
+              </Title>
+              <About>{mediaItem.overview}</About>
               <MoreInfo>
-                <h3>More informations</h3>
-
+                <h3>
+                  <strong>About</strong> {mediaItem.name || mediaItem.title}
+                </h3>
                 <ul>
-                  <li>Original title: {movie.original_title}</li>
-                  <li>Original language: {movie.original_language}</li>
-                  <li>Popularity: {movie.popularity}</li>
-                  <li>Vote count: {movie.vote_count}</li>
+                  <li>
+                    <strong>Original title:</strong>
+                    {mediaItem.original_name || mediaItem.title}
+                  </li>
+                  <li>
+                    <strong>Original language:</strong>
+                    {mediaItem.original_language || 'Nothing found'}
+                  </li>
+                  <li>
+                    <strong>Origin country:</strong>
+                    {mediaItem.origin_country || 'Nothing found'}
+                  </li>
+                  <li>
+                    <strong>Popularity:</strong>
+                    {mediaItem.popularity || 'Nothing found'}
+                  </li>
+                  <li>
+                    <strong>Vote count:</strong>
+                    {mediaItem.vote_count || 'Nothing found'}
+                  </li>
+                  <li>
+                    <strong>Realise:</strong>
+                    {formatData(
+                      mediaItem.first_air_date || mediaItem.release_date,
+                    ).toLocaleDateString('en-GB')}
+                  </li>
+                  <li>
+                    <strong>Number of episodes:</strong>
+                    {mediaItem.number_of_episodes || 'Nothing found'}
+                  </li>
+                  <li>
+                    <strong>Number of seasons:</strong>
+                    {mediaItem.number_of_seasons || 'Nothing found'}
+                  </li>
+                  <li>
+                    <strong>Status:</strong>
+                    {mediaItem.status || 'Nothing found'}
+                  </li>
+                  }
                 </ul>
               </MoreInfo>
             </ContentText>
@@ -94,49 +142,15 @@ const Detail: React.FC = () => {
               <button onClick={handlePlay}>Whatch Now</button>
             </ContentButton>
           </Content>
-
           <ContentImg>
-            <img
-              src={`${API_BASE_IMAGE_URL}w342${movie.poster_path}`}
-              alt="{movie.title}"
-            />
-          </ContentImg>
-        </Box>
-      )}
-
-      {serie && !showVideo && (
-        <Box>
-          <Content>
-            <ContentText>
-              <h1>{serie.name}</h1>
-              <h3> ({serie.first_air_date.slice(0, 4)})</h3>
-              <About>{serie.overview}</About>
-              <MoreInfo>
-                <h3>More informations</h3>
-                <ul>
-                  <li>Original title: {serie.original_name}</li>
-                  <li>Original language: {serie.original_language}</li>
-                  <li>Origin country: {serie.origin_country}</li>
-
-                  <li>Popularity: {serie.popularity}</li>
-                  <li>Vote count: {serie.vote_count}</li>
-                  <li>First air date: {serie.first_air_date}</li>
-
-                  <li>Number of episodes:{serie.number_of_episodes}</li>
-                  <li>Number of seasons:{serie.number_of_seasons}</li>
-                  <li>status:{serie.status}</li>
-                </ul>
-              </MoreInfo>
-            </ContentText>
-            <ContentButton>
-              <button onClick={handlePlay}>Whatch Now</button>
-            </ContentButton>
-          </Content>
-          <ContentImg>
-            <img
-              src={`${API_BASE_IMAGE_URL}w342${serie.poster_path}`}
-              alt="{serie.title}"
-            />
+            {mediaItem.poster_path !== null ? (
+              <img
+                src={`${API_BASE_IMAGE_URL}w342${mediaItem.poster_path}`}
+                alt="{mediaItem.title}"
+              />
+            ) : (
+              <img src={notfound} alt="notfound" />
+            )}
           </ContentImg>
         </Box>
       )}
