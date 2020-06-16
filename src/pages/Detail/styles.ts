@@ -10,20 +10,20 @@ export const Box = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 20%;
+  margin-top: 10rem;
 `;
 
 export const Content = styled.div`
-  width: 600px;
+  width: 40rem;
   height: 100%;
-  padding: 0 50px 0;
+  padding: 0 5rem 0;
 `;
 
 export const ContentText = styled.div`
   & h3 {
-    font-size: 20px;
+    font-size: 2rem;
     color: #a09999;
-    padding-bottom: 10px;
+    padding-bottom: 1rem;
   }
 `;
 
@@ -33,23 +33,24 @@ export const Title = styled.div`
   justify-content: baseline;
 
   h1 {
-    font-size: 48px;
+    font-size: 4rem;
 
     & span {
-      font-size: 20px;
+      font-size: 2rem;
       color: #a09999;
       align-self: flex-end;
-      margin-left: 10px;
+      margin-left: 1rem;
     }
   }
 `;
 
 export const About = styled.p`
-  font-size: 24px;
-  padding: 45px 0;
+  font-size: 2rem;
+  padding: 4rem 0;
 `;
 
 export const MoreInfo = styled.div`
+  font-size: 1rem;
   li {
     list-style: none;
     color: #e9e9e9;
@@ -59,13 +60,13 @@ export const MoreInfo = styled.div`
     }
 
     + li {
-      margin-top: 2px;
+      margin-top: 4px;
     }
   }
 `;
 
 export const ContentButton = styled.div`
-  padding: 10% 0;
+  padding: 3rem 0;
 
   button {
     width: 223px;
@@ -77,7 +78,7 @@ export const ContentImg = styled.div`
   display: flex;
 
   img {
-    width: 457px;
-    height: 684px;
+    width: auto;
+    height: 60rem;
   }
 `;

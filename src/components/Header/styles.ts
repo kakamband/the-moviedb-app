@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 30px 0;
   background: #000000;
+  width: 100%;
 
   header {
-    padding: 0 20px;
+    padding: 0 2rem;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -24,11 +25,11 @@ export const Container = styled.div`
       & a {
         color: #fff;
         text-decoration: none;
-        font-size: 24px;
+        font-size: 2rem;
         transition: opacity 0.2s;
 
         & + a {
-          margin-left: 20px;
+          margin-left: 2rem;
         }
 
         &:hover {

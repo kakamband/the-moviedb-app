@@ -9,46 +9,47 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20%;
+  margin-top: 20rem;
 
   h1 {
-    font-size: 60px;
+    font-size: 6rem;
   }
 `;
 
 export const Form = styled.form`
-  margin-top: 40px;
-  max-width: 700px;
+  margin-top: 4rem;
+  max-width: 70rem;
   display: flex;
 
   input {
     flex: 1;
-    height: 50px;
-    width: 600px;
-    padding: 0 24px;
+    height: 5rem;
+    width: 60rem;
+    padding: 0 2rem;
     border: 0;
     border-bottom-left-radius: 50px;
     border-top-left-radius: 50px;
     background: #e5e5e5;
     border-right: 0;
     color: #524b4b;
-    font-size: 20px;
+    font-size: 2rem;
 
     &::placeholder {
       color: #524b4b;
-      font-size: 20px;
-      padding: 0 20px;
+      font-size: 2rem;
+      padding: 0 2rem;
     }
   }
 
   button {
-    padding: 0 40px;
-    margin-left: -50px;
+    padding: 0 4rem;
+    margin-left: -5rem;
+
+    font-size: 1.5rem;
   }
 `;
 
 export const Error = styled.span`
-  /* display: block; */
   color: #c53030;
   margin-top: 8px;
   flex: 1;

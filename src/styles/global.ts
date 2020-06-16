@@ -9,6 +9,24 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    font-size: 62,5%;
+  }
+
+  @media (max-width:1080px) {
+    html{
+      font-size: 58%;
+    }
+  }
+
+  @media (max-width:720px) {
+    html{
+      font-size: 54%;
+    }
+
+  }
+
+
   body {
     -webkit-font-smoothing: antialiased;
     background: #111111;
