@@ -34,12 +34,12 @@ export const Title = styled.div`
 
   h1 {
     font-size: 48px;
-    margin-right: 10px;
 
     & span {
       font-size: 20px;
       color: #a09999;
       align-self: flex-end;
+      margin-left: 10px;
     }
   }
 `;
