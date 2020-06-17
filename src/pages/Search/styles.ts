@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100%;
+  width: 100%;
 `;
 
 export const Content = styled.div`
@@ -52,6 +53,10 @@ export const Form = styled.form`
     margin-left: -5rem;
 
     font-size: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    width: 40rem;
   }
 `;
 

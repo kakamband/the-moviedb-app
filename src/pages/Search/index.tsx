@@ -73,7 +73,6 @@ const Search: React.FC = () => {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Type here"
             />
-
             <button type="submit">Search</button>
           </Form>
         </Content>
