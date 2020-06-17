@@ -12,8 +12,8 @@ export const Content = styled.div`
   justify-content: center;
   margin-top: 20rem;
 
-  h1 {
-    font-size: 6rem;
+  & img {
+    height: 4.5rem;
   }
 `;
 

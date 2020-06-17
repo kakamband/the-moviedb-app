@@ -7,7 +7,6 @@ export const Container = styled.div`
 
   header {
     padding: 0 2rem;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,7 +24,7 @@ export const Container = styled.div`
         transition: opacity 0.2s;
 
         & + a {
-          margin-left: 3rem;
+          margin-left: 5rem;
         }
 
         &:hover {
