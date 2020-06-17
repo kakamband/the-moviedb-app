@@ -6,7 +6,7 @@ The movie database web app
 
 This application uses the [The movie Database API](https://www.themoviedb.org/) to create a basic streaming application prototype, and media catalog. It allows you to browser the media by some categories, see media details and play a sample video directly in your browser.
 
-![app.gif](https://raw.githubusercontent.com/mouracamila/the-moviedb-app/master/app.gif)
+![app.gif](https://https://github.com/mouracamila/the-moviedb-app/blob/master/app.gif)
 
 ### Demo
 
