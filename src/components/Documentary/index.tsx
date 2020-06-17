@@ -14,12 +14,7 @@ const Documentary: React.FC = () => {
   useEffect(() => {
     async function loadDocumentaries() {
       const documentaries = await getDocumentaries();
-      setDocumentaries(
-        documentaries.map((item: Item) => ({
-          ...item,
-          media_type: 'movies',
-        })),
-      );
+      setDocumentaries(documentaries);
     }
     loadDocumentaries();
   }, []);
