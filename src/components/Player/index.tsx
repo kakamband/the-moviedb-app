@@ -31,16 +31,22 @@ const Player: React.FC<IPlayer> = ({
           console.log(event);
         });
 
-        // It await to load the route to video or log the error.
+        //It await to load the route to video or log the error
         await player.load(`${VIDEO_LIST_URI}`).catch((error: any) => {
           console.error('Error code', error.code, 'object', error);
         });
+
+        //It play video in fullScreen, if not send error message
+        if (videoRef.current) {
+          try {
+            videoRef.current.requestFullscreen();
+          } catch (error) {
+            console.error('Your browser do not support fullscreen videos.');
+          }
+        }
       }
     }
-
     loadAsset();
-
-    videoRef.current?.requestFullscreen();
   }, [videoRef]);
 
   return (
