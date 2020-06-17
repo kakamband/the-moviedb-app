@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { API_BASE_IMAGE_URL, getDetail } from '../../services/api';
 
+import { API_BASE_IMAGE_URL, getDetail } from '../../services/api';
 import { useRouteMatch } from 'react-router-dom';
+
 import Header from '../../components/Header';
+import Player from '../../components/Player';
+
 import notfound from '../../assets/notfound.svg';
 
+//It calling the style-components
 import {
   Container,
   Box,
@@ -16,7 +20,6 @@ import {
   MoreInfo,
   Title,
 } from './styles';
-import Player from '../../components/Player';
 
 interface ItemParams {
   type: string;
@@ -50,6 +53,7 @@ const Detail: React.FC = () => {
   const { params } = useRouteMatch<ItemParams>();
 
   useEffect(() => {
+    //It get detail from Api endpoint(services/api.ts)
     async function loadDetail() {
       const detail = await getDetail(params.type, params.id);
       setMediaItem(detail);
@@ -58,10 +62,12 @@ const Detail: React.FC = () => {
     loadDetail();
   }, [params]);
 
+  //It play the video
   function handlePlay() {
     setShowVideo(true);
   }
 
+  //It format data from YYYY-MM-DD to DD/MM/YYYY
   function formatData(dataString: string) {
     return new Date(dataString);
   }
@@ -70,8 +76,10 @@ const Detail: React.FC = () => {
     <Container>
       <Header />
 
+      {/* checks and call player component */}
       {showVideo && <Player />}
 
+      {/* checks mediaItem(tv/movie) and player video */}
       {mediaItem && !showVideo && (
         <Box>
           <Content>
@@ -118,7 +126,7 @@ const Detail: React.FC = () => {
                     <strong>Realise:</strong>
                     {formatData(
                       mediaItem.first_air_date || mediaItem.release_date,
-                    ).toLocaleDateString('en-GB')}
+                    ).toLocaleDateString('en-GB') || 'Date not found'}
                   </li>
                   <li>
                     <strong>Status:</strong>
@@ -132,6 +140,7 @@ const Detail: React.FC = () => {
             </ContentButton>
           </Content>
           <ContentImg>
+            {/* checkes it poster img exist, if it null return 404 image*/}
             {mediaItem.poster_path !== null ? (
               <img
                 src={`${API_BASE_IMAGE_URL}w342${mediaItem.poster_path}`}

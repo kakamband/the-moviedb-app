@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import notfound from '../../assets/notfound.svg';
 import { API_BASE_IMAGE_URL } from '../../services/api';
+
+import notfound from '../../assets/notfound.svg';
 
 export interface Item {
   poster_path: string | null;
