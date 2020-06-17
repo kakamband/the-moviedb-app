@@ -7,11 +7,18 @@ export const Container = styled.div`
 `;
 
 export const Box = styled.div`
+  @media (max-width: 576px) {
+    flex-direction: column-reverse;
+    padding: 2rem;
+    align-self: center;
+  }
+`;
+
+export const ContentAll = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 10rem;
-  padding: 2rem;
 
   @media (max-width: 576px) {
     flex-direction: column-reverse;
@@ -19,18 +26,21 @@ export const Box = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const ContentCol = styled.div`
   width: 40rem;
-  height: 100%;
+  height: auto;
+  padding: 0 1rem;
 `;
 
 export const ContentText = styled.div`
-  padding: 0 2rem;
+  padding-right: 2rem;
   & h3 {
     font-size: 2rem;
     color: #a09999;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
   }
+
+  justify-content: center;
 `;
 
 export const Title = styled.div`
@@ -76,7 +86,7 @@ export const ContentButton = styled.div`
 
   button {
     width: 223px;
-    height: 41px;
+    height: 40px;
   }
 `;
 
@@ -89,6 +99,7 @@ export const ContentImg = styled.div`
   @media (max-width: 576px) {
     img {
       height: 50rem;
+      margin-bottom: 2rem;
     }
   }
 `;

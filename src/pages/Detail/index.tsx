@@ -12,7 +12,8 @@ import notfound from '../../assets/notfound.svg';
 import {
   Container,
   Box,
-  Content,
+  ContentAll,
+  ContentCol,
   ContentText,
   About,
   ContentButton,
@@ -82,74 +83,76 @@ const Detail: React.FC = () => {
       {/* checks mediaItem(tv/movie) and player video */}
       {mediaItem && !showVideo && (
         <Box>
-          <Content>
-            <ContentText>
-              <Title>
-                <h1>
-                  {mediaItem.name || mediaItem.title}
-                  <span>
-                    (
-                    {formatData(
-                      mediaItem.first_air_date || mediaItem.release_date,
-                    ).getFullYear()}
-                    )
-                  </span>
-                </h1>
-              </Title>
-              <About>{mediaItem.overview}</About>
-              <MoreInfo>
-                <h3>
-                  <strong>About</strong> {mediaItem.name || mediaItem.title}
-                </h3>
-                <ul>
-                  <li>
-                    <strong>Original title:</strong>
-                    {mediaItem.original_name || mediaItem.title}
-                  </li>
-                  <li>
-                    <strong>Original language:</strong>
-                    {mediaItem.original_language || 'Nothing found'}
-                  </li>
-                  <li>
-                    <strong>Origin country:</strong>
-                    {mediaItem.origin_country || 'Nothing found'}
-                  </li>
-                  <li>
-                    <strong>Popularity:</strong>
-                    {mediaItem.popularity || 'Nothing found'}
-                  </li>
-                  <li>
-                    <strong>Vote count:</strong>
-                    {mediaItem.vote_count || 'Nothing found'}
-                  </li>
-                  <li>
-                    <strong>Realise:</strong>
-                    {formatData(
-                      mediaItem.first_air_date || mediaItem.release_date,
-                    ).toLocaleDateString('en-GB') || 'Date not found'}
-                  </li>
-                  <li>
-                    <strong>Status:</strong>
-                    {mediaItem.status || 'Nothing found'}
-                  </li>
-                </ul>
-              </MoreInfo>
-            </ContentText>
-            <ContentButton>
-              <button onClick={handlePlay}>Whatch Now</button>
-            </ContentButton>
-          </Content>
-          <ContentImg>
-            {/* checkes it poster img exist, if it null return 404 image*/}
-            {mediaItem.poster_path !== null ? (
-              <img
-                src={`${API_BASE_IMAGE_URL}w342${mediaItem.poster_path}`}
-                alt="{mediaItem.title}"
-              />
-            ) : (
-              <img src={notfound} alt="notfound" />
-            )}
-          </ContentImg>
+          <ContentAll>
+            <ContentCol>
+              <ContentText>
+                <Title>
+                  <h1>
+                    {mediaItem.name || mediaItem.title}
+                    <span>
+                      (
+                      {formatData(
+                        mediaItem.first_air_date || mediaItem.release_date,
+                      ).getFullYear()}
+                      )
+                    </span>
+                  </h1>
+                </Title>
+                <About>{mediaItem.overview}</About>
+                <MoreInfo>
+                  <h3>
+                    <strong>About</strong> {mediaItem.name || mediaItem.title}
+                  </h3>
+                  <ul>
+                    <li>
+                      <strong>Original title:</strong>
+                      {mediaItem.original_name || mediaItem.title}
+                    </li>
+                    <li>
+                      <strong>Original language:</strong>
+                      {mediaItem.original_language || 'Nothing found'}
+                    </li>
+                    <li>
+                      <strong>Origin country:</strong>
+                      {mediaItem.origin_country || 'Nothing found'}
+                    </li>
+                    <li>
+                      <strong>Popularity:</strong>
+                      {mediaItem.popularity || 'Nothing found'}
+                    </li>
+                    <li>
+                      <strong>Vote count:</strong>
+                      {mediaItem.vote_count || 'Nothing found'}
+                    </li>
+                    <li>
+                      <strong>Realise:</strong>
+                      {formatData(
+                        mediaItem.first_air_date || mediaItem.release_date,
+                      ).toLocaleDateString('en-GB') || 'Date not found'}
+                    </li>
+                    <li>
+                      <strong>Status:</strong>
+                      {mediaItem.status || 'Nothing found'}
+                    </li>
+                  </ul>
+                </MoreInfo>
+              </ContentText>
+              <ContentButton>
+                <button onClick={handlePlay}>Whatch Now</button>
+              </ContentButton>
+            </ContentCol>
+            <ContentImg>
+              {/* checkes it poster img exist, if it null return 404 image*/}
+              {mediaItem.poster_path !== null ? (
+                <img
+                  src={`${API_BASE_IMAGE_URL}w342${mediaItem.poster_path}`}
+                  alt="{mediaItem.title}"
+                />
+              ) : (
+                <img src={notfound} alt="notfound" />
+              )}
+            </ContentImg>
+          </ContentAll>
         </Box>
       )}
     </Container>
