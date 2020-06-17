@@ -2,11 +2,11 @@
 import client from './client';
 
 // It is the route to img database
-export const API_BASE_IMAGE_URL = 'http://image.tmdb.org/t/p/';
+export const API_BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
 
 // It is the route to sample video
 export const VIDEO_LIST_URI =
-  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
 // It calls the endpoint to Popular Movies
 export async function getPopularMovies() {
