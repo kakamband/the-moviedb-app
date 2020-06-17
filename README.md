@@ -34,7 +34,7 @@ The app is hosted on the Heroku [click here to see it.](https://web-app-movie.he
 - [x] Search functionality
 - [ ] Unit test
 
-### Main technologies
+## Main technologies
 
 - [React.js](https://reactjs.org/)
 - [Styled Component](https://styled-components.com/)
