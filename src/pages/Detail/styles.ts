@@ -11,15 +11,21 @@ export const Box = styled.div`
   flex-direction: row;
   justify-content: center;
   margin-top: 10rem;
+  padding: 2rem;
+
+  @media (max-width: 576px) {
+    flex-direction: column-reverse;
+    margin-top: 2rem;
+  }
 `;
 
 export const Content = styled.div`
   width: 40rem;
   height: 100%;
-  padding: 0 5rem 0;
 `;
 
 export const ContentText = styled.div`
+  padding: 0 2rem;
   & h3 {
     font-size: 2rem;
     color: #a09999;
@@ -50,17 +56,17 @@ export const About = styled.p`
 `;
 
 export const MoreInfo = styled.div`
-  font-size: 1rem;
+  font-size: 1.5rem;
   li {
     list-style: none;
     color: #e9e9e9;
 
     & strong {
-      margin-right: 5px;
+      margin-right: 0.5rem;
     }
 
     + li {
-      margin-top: 4px;
+      margin-top: 0.2rem;
     }
   }
 `;
@@ -75,10 +81,14 @@ export const ContentButton = styled.div`
 `;
 
 export const ContentImg = styled.div`
-  display: flex;
-
   img {
     width: auto;
-    height: 60rem;
+    height: 70rem;
+  }
+
+  @media (max-width: 576px) {
+    img {
+      height: 50rem;
+    }
   }
 `;

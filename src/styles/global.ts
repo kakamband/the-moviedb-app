@@ -13,34 +13,6 @@ export default createGlobalStyle`
     font-size: 62,5%;
   }
 
-  @media (max-width:1200px) {
-    html{
-      font-size: 58%;
-    }
-  }
-
-  @media (max-width:768px) {
-    html{
-      font-size: 54%;
-    }
-
-  }
-
-  @media (max-width:576px) {
-    html{
-      font-size: 54%;
-    }
-
-  }
-
-  @media (min-width:576px) {
-    html{
-      font-size: 54%;
-    }
-
-  }
-
-
   body {
     -webkit-font-smoothing: antialiased;
     background: #111111;
@@ -67,6 +39,35 @@ export default createGlobalStyle`
     &:hover {
       background: ${shade(-0.4, '#5a5a5a')};
     }
+  }
+
+
+  @media (max-width:1200px) {
+    html{
+      font-size: 70%;
+    }
+  }
+
+  @media (max-width:768px) {
+    html{
+      font-size: 50%;
+    }
+
+  }
+
+  @media (max-width:576px) {
+    html{
+      font-size: 54%;
+
+    }
+
+  }
+
+  @media (min-width:576px) {
+    html{
+      font-size: 50%;
+    }
+
   }
 
 `;

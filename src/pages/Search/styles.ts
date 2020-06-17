@@ -18,8 +18,9 @@ export const Content = styled.div`
 
 export const Form = styled.form`
   margin-top: 4rem;
-  max-width: 70rem;
+  width: 70rem;
   display: flex;
+  flex: 1;
 
   input {
     flex: 1;
@@ -38,6 +39,11 @@ export const Form = styled.form`
       color: #524b4b;
       font-size: 2rem;
       padding: 0 2rem;
+    }
+
+    @media (max-width: 576px) {
+      width: 10rem;
+      padding: 2rem;
     }
   }
 
