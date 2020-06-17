@@ -25,7 +25,7 @@ export default createGlobalStyle`
 
   #root {
     margin: 0 auto;
-    padding: 0;
+    padding-bottom:8rem;
 
   }
 
@@ -59,9 +59,9 @@ export default createGlobalStyle`
     }
   }
 
-  @media (min-width:576px) {
+  @media (min-width:768px) {
     html{
-      font-size: 50%;
+      font-size: 60%;
     }
   }
 
