@@ -1,11 +1,11 @@
 import React, { useState, FormEvent } from 'react';
-import { Section } from '../../styles/shared';
-
 import { getResults } from '../../services/api';
 
+import { Section } from '../../styles/shared';
 import { Container, Content, Form, Error } from './styles';
+
 import Header from '../../components/Header';
-import Media from '../../components/Media';
+import MediaCarousel from '../../components/MediaCarousel';
 
 export interface IResult {
   poster_path: string | null;
@@ -31,11 +31,13 @@ const Search: React.FC = () => {
   const [result, setResult] = useState<IResult[]>([]);
   const [lastQuery, setLastQuery] = useState('');
 
+  //This function creating the action Search to button
   async function handleSearch(
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> {
     event.preventDefault();
 
+    //error handling
     if (!query) {
       setInputError('To be continue, you need add a Search.');
       return;
@@ -80,13 +82,8 @@ const Search: React.FC = () => {
         {result.length > 0 && (
           <Section>
             <h1>Results for: {lastQuery}</h1>
-            <ul>
-              {result.map((item) => (
-                <li key={item.id}>
-                  <Media item={item} type={item.media_type} />
-                </li>
-              ))}
-            </ul>
+            {/* it called media component */}
+            <MediaCarousel items={result} />
           </Section>
         )}
       </Container>

@@ -1,11 +1,10 @@
 import React from 'react';
 
 import Header from '../../components/Header';
-
-import PopularMovies from '../../components/PopularMovies';
-import PopularSeries from '../../components/PopularSeries';
 import Family from '../../components/Family';
 import Documentary from '../../components/Documentary';
+import PopularMovies from '../../components/PopularMovies';
+import PopularSeries from '../../components/PopularSeries';
 
 const Dashboard: React.FC = () => {
   return (
