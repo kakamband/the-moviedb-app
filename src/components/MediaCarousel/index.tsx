@@ -35,7 +35,7 @@ const MediaCarousel: React.FC<IMediaCarousel> = ({ items }) => {
       <Carousel
         responsive={responsive}
         infinite={true}
-        removeArrowOnDeviceType={['tablet', 'mobile']}
+        removeArrowOnDeviceType={['mobile']}
         itemClass="carousel-item"
       >
         {items.map((item) => (
