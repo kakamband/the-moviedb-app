@@ -6,7 +6,7 @@ The movie database web app
 
 This application uses the [The movie Database API](https://www.themoviedb.org/) to create a basic streaming application prototype, and media catalog. It allows you to browser the media by some categories, see media details and play a sample video directly in your browser.
 
-![app.gif](https://raw.githubusercontent.com/mouracamila/the-moviedb-app/master/app.gif)
+![app.gif](https://raw.githubusercontent.com/mouracamila/the-moviedb-app/blob/master/app.gif)
 
 ### Demo
 
@@ -16,12 +16,10 @@ The app is hosted on the Heroku [click here to see it.](https://web-app-movie.he
 
 - [x] Create a template layout with [figma](https://www.figma.com/file/qVgLxH6xrNcZ2DgF0FHAZv/Untitled?node-id=0%3A1)
 - [x] Create four section to list:
-
   - Popular Movies
   - Popular Series
   - Family Category (Movies and Series)
   - Documentaries
-
 - [x] Select a assets in the carousel and navigate to detail
 - [x] Show a sample MP4 movie in full screen
 - [x] Responsive app
