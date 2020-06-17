@@ -6,6 +6,7 @@ import { Container, Content, Form, Error } from './styles';
 
 import Header from '../../components/Header';
 import MediaCarousel from '../../components/MediaCarousel';
+import logo from '../../assets/logo.svg';
 
 export interface IResult {
   poster_path: string | null;
@@ -64,7 +65,7 @@ const Search: React.FC = () => {
       <Container>
         <Header />
         <Content>
-          <h1>CINE</h1>
+          <img src={logo} alt="logo" />
 
           <Form onSubmit={handleSearch}>
             <input
