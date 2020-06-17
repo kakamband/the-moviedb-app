@@ -41,7 +41,6 @@ export default createGlobalStyle`
     }
   }
 
-
   @media (max-width:1200px) {
     html{
       font-size: 70%;
@@ -52,22 +51,18 @@ export default createGlobalStyle`
     html{
       font-size: 50%;
     }
-
   }
 
   @media (max-width:576px) {
     html{
       font-size: 54%;
-
     }
-
   }
 
   @media (min-width:576px) {
     html{
       font-size: 50%;
     }
-
   }
 
 `;
