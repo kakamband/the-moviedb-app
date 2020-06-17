@@ -2,9 +2,19 @@
 The movie database web app
 </h1>
 
-## Introduction
+### Introduction
 
 This application uses the [The movie Database API](https://www.themoviedb.org/) to create a basic streaming application prototype, and media catalog. It allows you to browser the media by some categories, see media details and play a sample video directly in your browser.
+
+<p align="center">
+  <img
+    alt="TheMoviedbApp"
+    title="#TheMoviedbApp"
+    src="img.png"
+    width="900px"
+  />
+
+</p>
 
 ### Demo
 
