@@ -8,7 +8,6 @@ export const Container = styled.div`
 
 export const Box = styled.div`
   @media (max-width: 576px) {
-    flex-direction: column-reverse;
     padding: 2rem;
     align-self: center;
   }
@@ -22,25 +21,36 @@ export const ContentAll = styled.div`
 
   @media (max-width: 576px) {
     flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
     margin-top: 2rem;
+    text-align: center;
+    padding: 5rem;
   }
 `;
 
 export const ContentCol = styled.div`
-  width: 40rem;
+  width: 60rem;
   height: auto;
-  padding: 0 1rem;
+
+  @media (max-width: 576px) {
+    padding: 0;
+    align-self: center;
+    width: 40rem;
+  }
 `;
 
 export const ContentText = styled.div`
-  padding-right: 2rem;
+  padding-right: 5rem;
   & h3 {
     font-size: 2rem;
     color: #a09999;
     padding: 1rem 0;
   }
 
-  justify-content: center;
+  @media (max-width: 576px) {
+    padding: 0;
+  }
 `;
 
 export const Title = styled.div`
@@ -57,6 +67,10 @@ export const Title = styled.div`
       align-self: flex-end;
       margin-left: 1rem;
     }
+  }
+
+  @media (max-width: 576px) {
+    justify-content: center;
   }
 `;
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 2.5rem 0;
   background: #000000;
-  width: 100%vh;
+  width: 100%;
 
   header {
     padding: 0 2rem;
@@ -32,5 +32,8 @@ export const Container = styled.div`
         }
       }
     }
+  }
+  @media (max-width: 768px) {
+    padding: 2rem 0;
   }
 `;
