@@ -146,7 +146,7 @@ const Detail: React.FC = () => {
               {mediaItem.poster_path !== null ? (
                 <img
                   src={`${API_BASE_IMAGE_URL}w342${mediaItem.poster_path}`}
-                  alt="{mediaItem.title}"
+                  alt={mediaItem.title}
                 />
               ) : (
                 <img src={notfound} alt="notfound" />

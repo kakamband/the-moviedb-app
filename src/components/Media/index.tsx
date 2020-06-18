@@ -21,7 +21,7 @@ const Media: React.FC<IMedia> = ({ type, item }) => {
       {item.poster_path !== null ? (
         <img
           src={`${API_BASE_IMAGE_URL}w342${item.poster_path}`}
-          alt="{item.title}"
+          alt={item.title}
         />
       ) : (
         <img src={notfound} alt="notfound" />
